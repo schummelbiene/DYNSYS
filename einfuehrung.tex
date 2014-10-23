@@ -1,0 +1,244 @@
+
+Literatur: Munkres: Topology (im Netz verfügbar)
+
+\section{Topologische Dynamik}
+\subsection{Dynamisches System}
+
+\begin{definition}
+Als (topologisches, diskretes) dynamisches System bezeichnen wir ein Paar $(X, \phi)$ bestehend aus einem kompakten metrischen Raum $(X,d)$ und einer stetigen Abbildung $\phi: X \to X.$
+
+Wir bezeichnen mit 
+\begin{align*}
+\phi^n(x) = \phi \circ \dots \circ \phi(x), \quad n \in \N
+\end{align*}
+($n$-mal), die $n$-fache Anwendung von $\phi$ auf $x$. Insbesondere ist $\phi^0(x) = x$. Damit ist $\phi^n$ wieder eine Selbstabbildung von $X$. Ist $\phi$ invertierbar, können wir $\phi^n$ auch für negative $n$ definieren als $(\phi^{-1})^{-n}$.
+\end{definition}
+
+\begin{bemerkung} Weitere Klassen dynamischer Systeme
+
+Im Allgemeinen erhält man Klassen diskreter dynamischer Systeme, indem man eine Klasse von Räumen mit einer gewissen Strunktur (in unserem Fall kompakte, metrische Räume) zusammen mit strukturverträglichen Selbstabbildungen dieser Räume betrachtet (in unserem Fall die Stetigkeit).
+\end{bemerkung}
+
+\begin{bemerkung} Dynamisches System als Mononidwirkung
+
+Allgemein versteht man unter einem dynamischen System einen Raum $X$ zusammen mit einer Monoidwirkung 
+\begin{align*}
+  f: X \times H \to X
+\end{align*}
+auf $X$ (ein Monoid $H$ ist eine Halbgruppe mit einem neutralen Element). In unserem Fall wirkt der Monoid $\N_0$ (im invertierbaren Fall die Gruppe $\Z$) und $f$ ist definiert als $f(x,n)=\phi^n(x)$. Da $\N_0$ als Monoid durch das Element $1$ erzeugt wird, genügt hier eien Selbstabbildung, um die Monoidwirkung eindeutig zu bestimmen.
+\end{bemerkung}
+
+\begin{definition} Produkt, Faktor, Konjugation
+  
+  \renewcommand{\labelenumi}{(\alph{enumi})}
+  
+  \begin{enumerate}
+  \item Sei $(X_i \phi_i)_{i \in I}$ eine Familie von dynamischen Systemen. Dann nennen wir das dynamische System
+    \begin{align*}
+      (X, \phi) \coloneqq (\prod_{i \in I} X_i, \prod_{i \in I}\phi_i)
+    \end{align*}
+    mit $\phi \left( (x_i)_{i \in I}\right) =  \left( \phi_i (x_i)\right)_{i \in I}$ das Produkt von $(X_i, \phi_i)_{i \in I}$
+  \item Seien $(X, \phi)$ und $(Y, \psi)$ dynamische Systeme. Wenn es eine surjektive, stetige Abbildung $f:X \to Y$ gibt mit $f \circ \phi = \psi \circ f$, dann nennen wir $(Y, \psi)$ einen Faktor von $(X, \phi)$ und $f$ eine Faktorabbildung. Ist $f$ ein Homöomorphismus, dann nennen wir $f$ eine Konjugation und sagen, dass $\phi$ konjugiert zu $\psi$ ist.
+    \begin{align*}
+      &X \overset{\phi}{\to} X\\
+      f&\downarrow \qquad \downarrow f\\
+      &Y \overset{\psi}{\to}  \; Y 
+    \end{align*}
+  \end{enumerate}
+\end{definition}
+
+\begin{uebung}
+  Sei $(X_i,\phi_i)_{i \in I}$ eine Familie von dynamischen Systemen. Dann ist $(X_i, \phi_i)$ für jedes $i \in I$ ein Faktor von $(\prod_{i\in I} X_i, \prod_{i\in I} \phi_i)$
+\end{uebung}
+
+\begin{definition} Periodizität
+  
+  Sei $(X, \phi)$ ein dynamisches System. Als Orbit eines Punktes $x \in X$ unter $\phi$ bezeichnen wir die Menge 
+  \begin{align*}
+    {\cal O}_\phi \text{}(x) \coloneqq \set{\phi^n (x) | n \in \N_0}
+  \end{align*}
+Ein Punkt $x \in X$ heißt periodisch bezüglich $\phi$ mit Periode $p \in \N$, wenn $\phi^p(x)=x$ gilt. Ein Punkt $x \in X$ heißt schließlich periodisch mit Vorperiode $q$ und Periode $p$, wenn $\phi^{q+p} =\phi^p(x)$.
+\end{definition}
+\begin{uebung}
+  Zeigen Sie, dass $x$ genau dann schließlich periodisch ist, wenn ${\cal O}_\phi(x)$ endlich ist.
+\end{uebung}
+\begin{beispiel}Intervallabbildung
+  
+  Graphische Iteration [Bilder...] :
+  \begin{itemize}
+  \item quadratische Abbildung $\phi:[0,1], x \mapsto x^2$ auf $[0,1]$
+  \item logistische Abbildung $\phi_\lambda:[0,1] \to [0,1]$, $x \mapsto \lambda x(1-x)$ auf $[0,1]$ für $\lambda \in [0,4]$.
+  \item Zeltdachabbildung (chaotisch) $\phi:[0,1] \to [0,1],$
+    \begin{align*}
+      x \mapsto
+      \begin{cases}
+        2x & \text{für } x \in [0, 0.5] \\
+        2-2x & \text{für } x \in (0.5, 1] 
+      \end{cases}
+    \end{align*}
+  \end{itemize}
+\end{beispiel}
+
+\begin{uebung}
+$x \mapsto 0.5(1 - \cos(\pi x))$ ist eine Konjugation zwischen der logistischen Abbildung für $\lambda = 4$ und Zeltdachabbildung.
+\end{uebung}
+
+\begin{beispiel} Rotation
+
+  Gegeben sei eine kompakte metrische (abelsche) Gruppe $G$ (also eine abelsche Gruppe zusammen mit einer Metrik bezüglich der die Operation $+: G \times G \to G$ und $^{-1}: G \to G$ stetig sind) und ein Element $a \in G$. Dann ist die Rotation um das Element definiert als das dynamische System $(G, \phi_a)$ mit $\phi_a(x) = x + a$.
+\end{beispiel}
+\begin{beispiel} Winkelverdopplung auf dem Kreis
+
+  Die Winkelverdopplung $(S^1, \phi)$ mit $\phi(x) = x^2$ ist ein dynamisches System auf dem Kreis $S^1 = \set{z \in \C | \norm{z} = 1}$.
+\end{beispiel}
+\begin{uebung}
+  Zeigen Sie, dass das Produnkt von $n$ Rotationen auf dem Kreis eine Rotation auf dem $n$-dimensionalen Torus $\R^n/\Z^n$.
+\end{uebung}
+%%  Vincent hat deinen Schlüssel... {\leftarrow} Wo ist da eigentlich das Problem?  Und ich bin eine Nuss. Ich habe nämlich nicht daran gedacht, dass dein Fahhrradschlüssel an deinem Schlüsselbund dran ist, und unsere beiden Fahrräder sind grade aneinandergekettet...
+
+\subsection{Untersystem und Minimalität}
+
+\begin{definition}Invarianz und Untersystem
+
+  Sei $(X, \phi)$ ein dynamisches System und $Y \subset X$. Wenn $\phi(Y) \subseteq Y$ gilt, nennen wir $Y$ \emph{vorwärtsinvariant} unter $\phi$. Gilt $\phi^{-1}(Y) \subseteq Y$, nennen wir $Y$ \emph{rückwärtsinvariant} unter $\phi$.
+
+Wenn $Y$ abgeschlossen und vorwärtsinvariant ist, dann ist $(Y, \phi)$, genauer $\left( Y,\phi_{|Y}\right)$ wieder ein dynamisches System und wir sagen $(Y, \phi)$ ist ein Untersystem von $(X, \phi)$.
+\end{definition}
+%% Was denn?
+%% Küsschen... $\varepsilon >$ = $\eps >$
+%% oh kuno :D
+\begin{definition} $\alpha$- und $\omega$-Grenzmenge
+
+Sei $(X, \phi)$ ein dynamisches System. Für eine Menge $Y \subseteq X$ definieren wir die $\omega$-Grenzmenge 
+\begin{align*}
+  \omega(Y) \coloneqq \bigcap_{N \in \N_0} \overline{\bigcup_{n \geq N} \phi^n(Y)}
+\end{align*}
+(Häufungspunkte). Ist $\phi$ invertierbar, so definieren wir die $\alpha$-Grenzmenge als 
+\begin{align*}
+  \alpha(Y) \coloneqq \bigcap_{N \in \N_0} \overline{\bigcup_{n \geq N} \phi^{-n}(Y)}. 
+\end{align*}
+\end{definition}
+\begin{lemma}\label{lem:spezial}Spezialfälle von $\omega$-Grenzmengen
+  
+Sei $(X, \phi)$ ein dynamisches System. 
+\renewcommand{\labelenumi}{(\roman{enumi})}
+\begin{enumerate} %\renewcommand{\labelenumi}{(\alph{enumi})}
+\item Sei $Y \subseteq X$ abgeschlossen und vorwärtsinvariant unter $\phi$. Dann ist $\omega(Y) = \bigcap_{n \in \N_0} \phi^n(Y)$.
+\item Wenn $Y = \set{x}$, dann ist $\omega(x) \coloneqq \omega(\set{x})$ die Menge aller Häufungspunkte von $(\phi^n(x))_{n \in \N_0}$, das heißt
+  \begin{align*}
+    \omega(x) = \set{z \in X | \exists (n_k)_{k\in \N} \subset \N \text{ streng monoton wachsend :} \lim_{k \to \infty} \phi^{n_k}(x) = z}
+  \end{align*}
+\end{enumerate}
+\end{lemma}
+\begin{beweis}
+\renewcommand{\labelenumi}{(\roman{enumi})}
+  \begin{enumerate}
+  \item Da $Y$ abgeschlossen ist, ist $X$ kompakt, ist auch $\phi^m(Y)$ abgeschlossen für $m \in \N$. Da $Y$ vorwärtsinvariant ist, gilt
+    \begin{align*}
+      \phi^m(Y) \supseteq \phi^{m+1}(Y),
+    \end{align*}
+ also auch $\phi^m(Y) \subseteq \phi^n(Y)$ für $m \leq n$. Somit ist aber 
+ \begin{align*}
+   \overline {\bigcup_{n \geq N} \phi^n(Y)} \subseteq \overline{\phi^N (Y)} = \phi^N (Y)
+ \end{align*}
+und 
+\begin{align*}
+  \omega(Y) = \bigcap_{N \in \N_0} \phi^N(Y).
+\end{align*}
+\item  ($\subseteq$) Ist $z \in \omega(x)$, gilt $z \in \overline{\bigcup_{n >l} \phi^n(x)}$ für alle $l \in \N$, also existiert ein $n_l \geq l$ mit $\phi^{n_l}(x) \in B_{1/l}(z)$. Also gilt $\lim_{l \to \infty} \phi^{n_l}(x) = z$, und da $n_l \geq l$, können wir eine streng monoton wachsende Teilfolge wählen. 
+
+($\supseteq$) Sei andererseits $(n_k)_{n \in \N}$ streng monoton wachsend mit $\phi^{n_k}(x) \to z \in X$ für $k \to \infty$. Damit gilt für jedes $K \in \N$, dass 
+\begin{align*}
+  z \in \overline{\bigcup_{k > K} \phi^{n_k}(x)} \subseteq \overline{\bigcup_{n \geq n_K} \phi^n (x)}.
+\end{align*}
+Da $(n_k)_{k \in \N}$ streng monoton wächst, folgt $z \in \omega(x)$.
+ \end{enumerate}
+\end{beweis}
+
+\begin{beispiel} $\omega$-Grenzmengen von $x \mapsto x^2$ auf $[0,1]$
+  Die quadratische Abbildung auf dem Einheitsintervall $([0,1], \phi)$ mit $\phi(x) = x^2$ hat für $A = [a, b] \subseteq [0,1]$ die folgenden $\omega$-Grenzmengen:
+  \begin{itemize}
+  \item $\omega(A)=\set{0}$ für $0\leq a < b <1$
+  \item $\omega(A)=[0,1]$ für $ A = [a, 1]$ mit $0 \leq a  <1$
+  \end{itemize}
+\end{beispiel}
+
+\begin{satz}\label{th:omega} Eigenschaften von $\omega$-Grenzmengen
+
+Sei $(X, \phi)$ ein dynamisches System und $Y \subseteq X$ nichtleer. Dann ist $\omega(Y)$ nichtleer, abgeschlossen und es ist 
+\begin{align*}
+  \omega(Y) = \phi(\omega (Y)) = \omega(\omega(Y)) = \omega(\bar Y).
+\end{align*}
+\end{satz}
+\begin{beweis}
+  $\omega(Y)$ ist als Durchschnitt eine fallende Folge von nichtleeren, abgeschlossenen Mengen im einem kompakten Raum nichtleer und abgeschlossen. 
+
+Es gilt (siehe Aufgabe \ref{ex:durchschnitt})
+\begin{align*}
+  \phi(\omega(Y))&= \phi(\bigcap_{N \in \N_0} \overline{\bigcup_{n \geq N}\phi^n(Y)})\\
+&=  (\bigcap_{N \in \N_0} \overline{\bigcup_{n \geq N}\phi^{n+1}(Y)})\\
+&=  (\bigcap_{N \in \N_0} \overline{\bigcup_{n \geq N+1}\phi^{n}(Y)})\\
+&= \omega(Y).
+\end{align*}
+Damit folgt nach Lemma \ref{lem:spezial}
+\begin{align*}
+  \omega(Y)= \bigcap_{n \in \N_0}\phi^n(\omega(Y)) = \omega(Y)
+\end{align*}
+Schließlich ist offensichtlich $\omega(Y) \subseteq \omega(\bar Y)$ und mit Aufgabe \ref{ex:durchschnitt}
+\begin{align*}
+  \omega(\bar Y) &= \bigcap_{N \in \N_0} \overline{\bigcup_{n \geq N}\overline{\phi^n(Y)}}\\
+& \subseteq \bigcap_{N \in \N_0} \overline{\bigcup_{n \geq N}\overline{\bigcup_{m \geq n}\phi^m(Y)}}\\
+&= \omega(Y)
+\end{align*}
+\end{beweis}
+\begin{uebung}\label{ex:durchschnitt}Topologische Eigenschaften kompakter Räume
+\renewcommand{\labelenumi}{(\alph{enumi})}
+  \begin{enumerate}
+  \item Zeigen Sie die endliche Durchschnittseigenschaft.
+  \item Zeigen Sie, dass für $A_0 \supseteq A_1 \supseteq A_2 \supseteq \dots$ mit $A_i \subseteq X$ kompakter metrischer Raum und $\phi: X \to X$ gilt $\phi(\bigcap_{i \in \N} A_i) = \bigcap_{i \in \N} \phi(A_i)$.
+  \item $X$ kompakter, metrischer Raum $\phi:X \to X$ stetig, dann gilt für $A \subseteq X$, dass $\phi(\bar A) = \overline{\phi(A)}$.
+  \item Zeigen Sie, dass jede bijektive stetige Abbildung zwischen kompakten metrischen Räumen ein Homöomorphismus (Umkehrabbildung ist auch stetig) ist.
+  \end{enumerate}
+\end{uebung}
+\begin{uebung} Eigenschaften der $\omega$-Grenzmenge
+  Geben Sie ein Beispiel für ein dynamisches System $(X, \phi)$ und $U, V \subseteq X$ sowie $U \cap V \neq \emptyset$ für das
+  \renewcommand{\labelenumi}{(\alph{enumi})}
+  \begin{enumerate}
+  \item $\omega(U \cap V) \neq \omega(U) \cap \omega(V)$
+  \item $\omega(U \cup V) \neq \omega(U) \cup \omega(V)$
+  \end{enumerate}
+gilt. Zeigen Sie auch, dass $\omega(X)$ gleich dem schließlichen Bild von $\phi$ ist, das heißt $\omega(x)$ ist die (bezüglich Inklusion) maximale Teilmenge $Y$ von $X$, für die $\phi(Y)= Y$ gilt.
+\end{uebung}
+
+\begin{definition}
+  Ein Punkt $x\in X$ heißt \emph{rekurrent} bezüglich einem dynamischen System$(X,\phi)$, wenn $x \in \omega(x)$.  
+\end{definition}
+\begin{definition}Minimalität
+
+Ein dynamisches System $(X, \phi)$ heißt \emph{minimal}, wenn es kein echtes, nichttriviales Untersystem hat, das heißt, wenn $\emptyset$ und $X$ die einzigen unter $\phi$ vorwärtsinvarianten Teilmengen von $X$ sind.
+\end{definition}
+\begin{lemma}Charakterisierung der Minimalität
+
+Sei $(X, \phi)$ ein dynamisches System, dann sind die folgenden Aussagen äquivalent:
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\begin{enumerate}
+\item $(X, \phi)$ ist minimal.
+\item Für jedes $x \in X$ gilt $\omega(x) = X$.
+\item Jeder Orbit ist dicht, das heißt $\overline{{\cal O}_\phi(x)} = X$ für jedes $x \in X$.
+\item Für jede nichtleere, offene Menge $U \subseteq X$ gilt $\bigcup_{n \in \N_0} \phi^{-n}(U) = X$.
+\end{enumerate}
+\end{lemma}
+\begin{beweis}
+{$(i) \Rightarrow (ii)$} 
+Nach Satz \ref{th:omega} ist $\omega(x)$ nichtleer, abgeschlossen und vorwärts-invariant. Dann ist $(\omega(x), \phi)$ ein Untersystem von $(X, \phi)$, also gilt $\omega(x) = X$.
+
+{$(ii) \Rightarrow (iii)$} Nach Lemma \ref{lem:spezial} gilt $X = \omega(x) \subseteq \overline{{\cal O}_\phi(x)} \subseteq X$. Also $\overline{{\cal O}_\phi(x)} = X$.
+
+  {$(iii) \Rightarrow (iv)$} Sei $U$ offen, nichtleer und $x \in X$. Dann ist ${\cal O}_\phi (x)$ dicht in $X$, also gibt es $n \in \N_0$ mit $\phi^n(x) \in U$ oder anders ausgedrückt $x \in \phi^{-n}(U)$. Also ist $X = \bigcup_{n \in \N}\phi^{-n}(U)$. 
+
+  {$(iv) \Rightarrow (i)$} Sei $V \neq X$ eine abgeschlossene, unter $\phi$ vorwärtsinvariante Teilmenge von $X$. Dann ist $U \coloneqq X \setminus V $ offen und nichtleer, es gilt also 
+  \begin{align*}
+    X = \bigcup_{n \in \N} \phi^{-n}(U)
+  \end{align*}
+Wäre $V$ nichtleer, so gäbe es $x \in V$ mit $\phi^{n}(x)\in U$ für ein $n \in \N_0$, das der Vorwärtsinvarianz von $V$ widerspricht. Damit ist $X$ minimal.
+\end{beweis}
