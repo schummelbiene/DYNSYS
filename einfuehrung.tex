@@ -100,7 +100,7 @@ $x \mapsto 0.5(1 - \cos(\pi x))$ ist eine Konjugation zwischen der logistischen 
 
 \begin{definition}Invarianz und Untersystem
 
-  Sei $(X, \phi)$ ein dynamisches System und $Y \subset X$. Wenn $\phi(Y) \subseteq Y$ gilt, nennen wir $Y$ \emph{vorwärtsinvariant} unter $\phi$. Gilt $\phi^{-1}(Y) \subseteq Y$, nennen wir $Y$ \emph{rückwärtsinvariant} unter $\phi$.
+  Sei $(X, \phi)$ ein dynamisches System und $Y \subset X$. Wenn $\phi(Y) \subseteq Y$ gilt, nennen wir $Y$ \markdef{vorwärtsinvariant} unter $\phi$. Gilt $\phi^{-1}(Y) \subseteq Y$, nennen wir $Y$ \markdef{rückwärtsinvariant} unter $\phi$.
 
 Wenn $Y$ abgeschlossen und vorwärtsinvariant ist, dann ist $(Y, \phi)$, genauer $\left( Y,\phi_{|Y}\right)$ wieder ein dynamisches System und wir sagen $(Y, \phi)$ ist ein Untersystem von $(X, \phi)$.
 \end{definition}
@@ -211,16 +211,16 @@ gilt. Zeigen Sie auch, dass $\omega(X)$ gleich dem schließlichen Bild von $\phi
 \end{uebung}
 
 \begin{definition}
-  Ein Punkt $x\in X$ heißt \emph{rekurrent} bezüglich einem dynamischen System$(X,\phi)$, wenn $x \in \omega(x)$.  
+  Ein Punkt $x\in X$ heißt \markdef{rekurrent} bezüglich einem dynamischen System$(X,\phi)$, wenn $x \in \omega(x)$.  
 \end{definition}
 \begin{definition}Minimalität
 
-Ein dynamisches System $(X, \phi)$ heißt \emph{minimal}, wenn es kein echtes, nichttriviales Untersystem hat, das heißt, wenn $\emptyset$ und $X$ die einzigen unter $\phi$ vorwärtsinvarianten Teilmengen von $X$ sind.
+Ein dynamisches System $(X, \phi)$ heißt \markdef{minimal}, wenn es kein echtes, nichttriviales Untersystem hat, das heißt, wenn $\emptyset$ und $X$ die einzigen unter $\phi$ vorwärtsinvarianten Teilmengen von $X$ sind.
 \end{definition}
 \begin{lemma}Charakterisierung der Minimalität
 
 Sei $(X, \phi)$ ein dynamisches System, dann sind die folgenden Aussagen äquivalent:
-\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumi}{(\roman{enumi})}
 \begin{enumerate}
 \item $(X, \phi)$ ist minimal.
 \item Für jedes $x \in X$ gilt $\omega(x) = X$.
@@ -241,4 +241,281 @@ Nach Satz \ref{th:omega} ist $\omega(x)$ nichtleer, abgeschlossen und vorwärts-
     X = \bigcup_{n \in \N} \phi^{-n}(U)
   \end{align*}
 Wäre $V$ nichtleer, so gäbe es $x \in V$ mit $\phi^{n}(x)\in U$ für ein $n \in \N_0$, das der Vorwärtsinvarianz von $V$ widerspricht. Damit ist $X$ minimal.
+\end{beweis}
+
+%\datum{28.Oktober 2014}
+\begin{lemma} Minimalität von Faktoren
+  
+Jeder Faktor eines minimalen dynamischen Systems ist selbst minimal.
+\end{lemma}
+\begin{beweis}
+  Sei $(Y, \psi)$ ein Faktor von $(X, \phi)$ mit der Faktorabbildung $f$. Wenn $W \neq Y$ eine abgeschlossene, unter $\psi$ vorwärtsinvariante Teilmenge ist, dann ist $V \coloneqq f^{-1}(W) \neq X$ abgeschlossen. Für $x \in V$ ist $f(x) \in W$ und es gilt $f \circ \phi(x) = \psi \circ f(x) \in \psi(W) \subseteq W$, also auch $\phi(x) \in f^{-1}(W) = V$. Damit ist $V$ abgeschlossen und vorwärtsinvariant unter $\phi$. Damit ist $(V, \phi)$ ein echtes Teilsystem von $(X, \phi)$, also $V \neq \emptyset$ und somit auch $W = \emptyset$.
+\end{beweis}
+
+\subsection{Mischungseigenschaften}
+\begin{definition}  Nirgends dichte, magere und residuale Mengen
+
+Sei $(X, d)$ metrischer Raum und $U \subseteq X$.  
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\begin{enumerate}
+\item $U$ heißt \markdef{nirgends dicht}, wenn das innere des Abschlusses leer ist:
+  \begin{align*}
+    \inner(\overline U) = \emptyset
+  \end{align*}
+\item $U$ heißt \markdef{mager}, wenn sie die Vereinigung nirgends dichter Mengen ist:
+  \begin{align*}
+    U = \bigcup_{i \in \N} U_i
+  \end{align*}
+und $U_i$ nirgends dicht.
+\item $U$ heißt residual, wenn ihr Komplement $X\setminus U$ mager ist.
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+\renewcommand{\labelenumi}{(\roman{enumi})}
+  \begin{enumerate}
+  \item Jede Teilmenge einer mageren Menge ist mager.
+  \item Jede Obermenge einer residualen Menge ist residual.
+  \item Der abzählbare Durchschnitt dichter offener Mengen ist residual.
+  \end{enumerate}
+\end{lemma}
+\begin{beweis}
+\renewcommand{\labelenumi}{(\roman{enumi})}
+  \begin{enumerate}
+  \item Sei $V$ mager und $U \subset V$. Dann gibt es nirgends dichte Mengen $V_i$, $ i \in \N$ mit $V = \bigcup_{i \in \N} V_i$. Dann ist 
+    \begin{align*}
+      U = \bigcup_{i \in \N} ( V_i \cap U)
+    \end{align*}
+und für $ i\in \N$ ist $V_i \cap U$ nirgends dicht, denn $\inner \overline{(V_i \cap U)} \subseteq \inner (\overline {V_i} \cap \bar U)$. Mit $\overline{A \cap B} = \bar A \cap \bar B$ und $\inner (A \cap B) = \inner A \cap \inner B$ folgt
+\begin{align*}
+  \inner(\bar V_i \cap \bar U) = \inner \bar V_i \cap \inner \bar U = \emptyset.
+\end{align*}
+Somit ist $U$ abzählbarer Durchschnitt nirgends dichter Teilmengen, also mager.
+\item Betrachten der Komplemente und (i) liefert die Aussage. 
+\item Wir zeigen zunächst, dass das Komplement einer offenen dichten Menge $V$ nirgends dicht ist. Wir müssen also zeigen, dass $\overline {X\setminus V} = X \setminus V$ ein leeres Inneres hat. 
+Hätte $X \setminus V$ einen inneren Punkt $x$, dann gäbe es eine Umgebung $U$ von $x$, die vollständig in $X \setminus V$ liegt. Dies widerspricht daber der Dichtheit von $V$. 
+
+Sei jetzt $V = \bigcap_{i\in \N} U_i$ der Durchschnitt offener, dichter Mengen $U_i$, $i \in \N$.
+Dann ist $V^c = \bigcup_{ i \in \N} U_i^c$ abzählbare Vereinigung nirgends dichter Mengen, also mager und $V$ ist somit residual.
+  \end{enumerate}
+\end{beweis}
+\begin{satz} Satz von Baire
+  
+Sei $X$ ein kompakter metrischer Raum. Dann ist jede residuale Menge dicht in $X$.
+\end{satz}
+\begin{beweis}
+  Wir teilen den Beweis in vier Schritte.
+  \begin{enumerate}
+  \item Ein abzählbarer Durchschnitt offener dichter Mengen ist dicht.
+
+    Wir zeigen, dass der Durchschnitt $U = \bigcap_{i \in \N} U_i$ offener dichter Mengen $U_i$, $ i \in \N$, dicht ist in $X$. Seien dazu $ x \in X$, $\eps > 0$ beliebig. Wir konstruieren ein $y \in B_\eps(x) \cap U$. 
+
+Da $U_1$ dicht ist, exisitert ein $x_1 \in U_1 \cap B_\eps(x)$. Da $U_1 \cap B_\eps (x)$ offen ist, gibt es ein $\eps_1 \in (0, \frac 1 2 \eps)$ mit
+\begin{align*}
+  \overline{B_{\eps_1}(x)} \subseteq U_1 \cap B_\eps(x).
+\end{align*}
+Da $U_2$ dicht ist, existiert ein $x_2 \in U_2 \cap B_{\eps_1}(x_1) \subseteq U_1 \cap U_2 \cap B_\eps(x)$. Da $U_2 \cap B_{\eps_1}(x_1)$ offen ist, gibt es ein $ \eps_2 \in (0,\frac 1 2 \eps_1)$ mit $\overline{B_{\eps_2}(x_2)} \subseteq U_2 \cap B_{\eps_1}(x_1)$. Induktiv erhält man Folgen $(x_i)_{i\in \N} \subset X$ und $(\eps_i)_{i \in \N} \subset \R$ mit
+
+\begin{enumerate}
+\renewcommand{\labelenumi}{(\roman{enumi})}
+\item  $\overline{B_{\eps_i}(x_i)} \subseteq U_i \cap B_{\eps_{i-1}} (x_{i-1}) \subset U_1 \cap \dots \cap U_i \cap B_\eps (x)$
+\item $\eps_i < \frac 1 2 \eps_{i-1} < \frac 1 {2^i} \eps$
+\end{enumerate}
+Somit ist $(x_i)_{i \in \N}$ Cauchy-Folge und da $X$ als kompakter, metrischer Raum auch vollständig ist, gibt es ein $x_0 \in X$ mit $\lim_{i \to \infty}x_1 = x_0$. Es gilt  $x_0 \in \overline{B_{\eps_i}(x_i)} \subset U_i \cap B_\eps(x)$ für alle $i \in \N$ und deshalb $x_0 \in \left(  \bigcap_{i \in \N} U_i \right) \cap B_\eps(x)$ und somit $x_0 \in U$. 
+\item  Eine abzählbare Vereinigung nirgends dichter, abgeschlossener Mengen hat keinen inneren Punkt.
+
+Wir zeigen, dass die Vereinigung $V \coloneqq \bigcup_{i \in \N} V_i$ nirgends dichter, abgeschlossener Mengen $V_i$, $i \in \N$, keinen inneren Punkt hat. Sei dazu $W \coloneqq V^c = \bigcap_{i \in \N} W_i$ mit $W_i \coloneqq V_i^c$. Dann ist $W$ der abzählbare Durchschnitt offener dichter Mengen und mit dem ersten Schritt dicht in $X$. Angenommen, $V$ enthält einen inneren Punkt, dann gibt es eine offene Menge $U \subseteq V$. Somit folgt $U \cap V^c = U \cap W = \emptyset$ im Widerspruch zur Dichtheit von $W$.
+
+%\datum{30. Oktober 2014}
+\item Magere Mengen in $X$ haben leeres Inneres
+
+Wir zeigen, dass eine magere Menge $V \coloneqq \bigcup_{i \in \N} V_i$, $V_i$ nirgends dicht, leeres Inneres hat. Definiere dazu $\hat V \coloneqq \bigcup_{i \in \N} \overline{V_i} $. Da $\inner (\overline{V_i}) = \emptyset = \inner (\overline {(\overline{V_i})})$, sind auch alle $\overline{V_i}$ nirgends dicht. Damit ist $\hat V$ abzählbare Vereinigung abgeschlossener nirgends dichter Mengen, hat also nach 2. leeres Inneres.
+\item Jede residuale Menge in $X$ ist dicht in $X$. Sei $U$ residuale Menge, dann ist $V \coloneqq U^c$ mager, hat also nach 3. leeres Inneres, also $\inner V = \emptyset = \inner U^c$. Schließlich gilt 
+  \begin{align*}
+    \inner U^c = (\overline{U})^c = \emptyset,
+  \end{align*}
+also $\bar U = X$.
+  \end{enumerate}
+\end{beweis}
+
+\begin{definition} Topologische Transitivität
+
+Wir nennen ein dynamisches System $( X, \phi)$ topologisch transitiv, wenn es für jedes Paar von nichtleeren, offenen Teilmengen $U, V \subseteq X$ ein $n \in \N_0$ gibt, sodass $\phi^n(U) \cap V \neq \emptyset$. 
+  (Mischungseigenschaft)
+
+Wir nennen einen Punkt $x \in X$ transitiv, wenn sein Orbit unter $\phi$ dicht in $X$, also $\overline {\cO_\phi(x)}= X$. Die Menge aller transitiven Punkte von $\phi$ bezeichnen wir mit $\cT = cT(\phi)$.
+\end{definition}
+\begin{uebung}
+  Sei $(X, \phi)$ dynamisches System. Dann ist $\phi$ transitiv.
+\end{uebung}
+\begin{lemma} Charakterisierung topologischer Transitivität
+
+Sei $X$ kompakter metrischer Raum ohne isolierte Punkte. Für ein dynamisches System $(X \phi)$ sind dann äquivalent:
+\begin{enumerate}
+\item $(X, \phi)$ ist topologisch transitiv
+\item Für nichtleere offene Mengen $U, V \subseteq X$ gibt es ein $n \in \N_0$, sodass $\phi^{-n}(V) \cap U  = \emptyset$.
+\item $\cT(\phi) \neq 0$
+\item $\cT(\phi)$ ist residual
+\end{enumerate}
+\end{lemma}
+\begin{beweis}
+  {(i) $\Leftrightarrow$(ii)} 
+  \begin{align*}
+    \phi^n(u) \cap V \neq \emptyset &\Leftrightarrow \exists x \in U : \phi^n(x) \in V\\
+ &\Leftrightarrow \exists x \in U : x \in \phi^{-n}(V)\\
+ &\Leftrightarrow U \cap \phi^{-n}(V) \neq \emptyset
+  \end{align*}
+
+  {(i) $\Rightarrow$(iv)} Da $X$ ein kompakter metrischer Raum ist, gibt es für jedes $ \eps > 0 $ eine endliche Menge $P_\eps \subseteq X$, sodass $X \subseteq \bigcap_{x \in P_\eps} B_\eps(x)$. Dann lässt sich jede offene Menge als Vereinigung von Mengen aus
+  \begin{align*}
+    \cB \coloneqq \set{B_{1/k}(x)| k\in \N, x \in P_{1/k}}
+  \end{align*}
+darstellen, $X$ hat also eine abzählbare Basis $\cB$.
+
+Sei $(U_n)_{n \in \N}$ eine Abzählung der Elemente von $\cB$. Wir setzen
+\begin{align*}
+  V_N \coloneqq \bigcup_{i \in \N_0} \phi^{-i}(U_n) 
+\end{align*}
+Als Vereinigung offener Mengen ist $V_n$ wieder offen. Für jede nichtleere, offene Menge $W \subseteq X$ gibt es wegen (i) ein $i \geq 0$, so dass $\phi^{-i}(U_n) \cap W \neq \emptyset$. Damit gilt auch $V_n \cap W \neq \emptyset$. Damit ist $V_n$ offen und dicht und der Durchschnitt $V \coloneqq \bigcap_{n \in \N_0} V_n$ ist residual nach Lemma 1.25. Es bleibt zu zeigen, dass $V = \cT (\phi)$.
+ In der Tat gilt: 
+ \begin{align*}
+   x \in V \Leftrightarrow  \forall n \in \N_0 \exists i \in \N_0: \phi^i(x) \in U_n \Leftrightarrow \forall n \in \N_0: \cO(x) \cap U_n \neq \emptyset\\
+\Leftrightarrow \overline{\cO(x)} = X\\
+\Leftrightarrow x \in \cT. 
+ \end{align*}
+
+(iv) $\Leftrightarrow $ (iii) Nach dem Satz von Baire ist $\cT(\phi)$ dicht, also nichtleer.
+
+(iii) $\Leftrightarrow $ (i) Sei $x \in \cT(\phi)$ und seinen $U, V \subseteq X$ offen und nichtleer. Dann gilt es $n \in \N$ mit $\phi^m(x) \in U$. Weiterhin ist $V\setminus \set{\phi^k(x)|k \in \set{0, \dots, m}}$ nichtleer und offen, da $X$ keine isolierten Punkte hat. Damit gibt es $n> m$ mit 
+\end{beweis}
+%\datum{4. November 2014}
+% FEHLT!
+%\datum{11. November 2014}
+\begin{satz}Glasnar, Weiss, Akin   
+
+Sei $(X, \phi)$ dynamisches System transitiv und fast gleichgradig stetig. Dann gilt:
+\begin{enumerate}
+\item $T(\phi) = \cE \phi$
+\item $(X, \phi)$ ist gleichmmäßig starr, das heißt, es gibt eine Folge $(n_k)_{k \in \N}$, sodass $\phi^{n_k}$ gleichmäßig gegen $\id_X$ konvergiert.
+\item $\phi$ ist ein Homöomorphismus.
+\end{enumerate}
+\end{satz}
+\begin{beweis}
+\renewcommand{\labelenumi}{(\roman{enumi})}
+  \begin{enumerate}
+  \item 
+  \item 
+  \item Da $(X, \phi)$ transitiv ist, ist $\phi$ surjektiv nach Aufgabe1.28. Angenommen, es gibt $x, y \in X$ mit $\phi(x) = \phi(y)$ und $d(x, y) \eqqcolon \eps > 0$. Dann gibt es wegen (ii) ein $n \in \N$ mit $d(\phi^n(x), x) \leq \frac \eps 2$ und $d(\phi^n(y), y)< \frac \eps 2$, zusammen ergibt sich der Widerspruch 
+    \begin{align*}
+      0 = d(\phi^n(x), \phi^n(y)) \geq d(x, y)- d(x, \phi^n(x))- d(y, \phi^n(y))> \eps-\frac \eps 2 -\frac \eps 2 = 0
+    \end{align*}
+Also ist $\phi$ bijektiv und damit auch ein Homöomorphismus.
+  \end{enumerate}
+\end{beweis}
+Es folgen nun drei Sätze über dynamische Eigenschaften, die Sensitivität implizieren. 
+\begin{satz}
+  Jedes mischende dynamische System mit mindestens zwei Punkten ist sensitiv.
+\end{satz}
+\begin{beweis}
+  Seien $(X, \phi)$ ein mischendes dynamisches System und $u, v \in X$ zwei verschiedene Punkte in $X$. Sei 
+  \begin{align*}
+    \eps \coloneqq \frac {d(u,v)} 4,
+  \end{align*}
+dann gibt es für jedes $x \in X$ und $\delta > 0$ ein $n \in \N$ mit $\phi^n(B_\delta (x)) \cap B_\eps(u) \neq \emptyset$ und $\phi^n(B_\delta(x)) \cap B_\eps(v) \neq \emptyset$. Also gibt es $y \in B_\delta(x)$ und $z \in B_\delta(x)$ mit $d(\phi^n(y), u) <\eps$ und $d(\phi^n(z), v) <\eps$. Damit gilt schließlich 
+\begin{align*}
+  d(\phi^n(y), \phi^n(z))&\geq d(u,v) - d(\phi^n(y), u)- d(\phi^n(z, v)\\
+&\geq 4 \eps - \eps - \eps = 2 \eps.
+\end{align*}
+Somit ist entweder $d(\phi^n(y), \phi^n(x))\geq \eps$ oder  $d(\phi^n(z), \phi^n(x))\geq \eps$, ist also sensititv mit Sensitivitätskonstante $\eps$.
+\end{beweis}
+\begin{satz}Banks et al. 1992
+
+Sei $(X, \phi)$ ein transitives dynamisches System, für das $\per(\phi)$ dicht liegen und $X$ enthält unendlich viele Punkte. Dann ist $(X, \phi)$.
+\end{satz}
+\begin{beweis}
+  Wir teilen den Beweis in zwei Schritte: 
+  \begin{enumerate}
+  \item Es gibt für alle $\eta > 0$ und alle $x \in X$ ein $q \in \per(\phi)$, sodass
+    \begin{align*}
+      \dist(x, \cO_\phi(q))> \eta.
+    \end{align*}
+Da $\per(\phi)$ dicht liegt, gibt es einen periodischen Punk $q_1$ und da $X$ unendlich viele Punkte enthält, gibt es auch einen zweiten Periodischen Punkt $q_2 \notin\cO_\phi(q_1)$ (sonst Widerspruch zu $\per(\phi)$ dicht). Definiere 
+\begin{align*}
+  \eta &\coloneqq \frac 1 3 \dist(\cO(q_1), \cO(q_2))\\
+&= \frac 13 \min \set{d(x_1, x_2)| x_1 \in \cO_\phi(q_1), x_2 \in \cO(q_2)}>0.
+\end{align*}
+Sei $x \in X$ beliebig. Dann gibt es $r_1 \in \cO_\phi(q_1)$ und $r_2 \in \cO_\phi(q_2)$ mit 
+\begin{align*}
+  \dist(x, \cO_\phi(q_1)) = d(x, r_1),\\
+  \dist(x, \cO_\phi(q_2)) = d(x, r_2).
+\end{align*}
+Mit der Dreiecksungleichung folgt
+\begin{align*}
+  \dist(x, \cO_\phi(q_1)) +   \dist(x, \cO_\phi(q_2)) &= d(x, r_1) + d(x, r_2)\\
+&\geq d(r_1, r_2) \geq 2 \eta
+\end{align*}
+und somit
+\begin{align*}
+  \dist(x, \cO_\phi(q_1))> \eta
+\end{align*}
+oder 
+\begin{align*}
+  \dist(x, \cO_\phi(q_2))> \eta.
+\end{align*}
+\item $(X, \phi)$ ist sensitiv mit Sensitivitätskonstante $\frac \eta 4$. Wir zeigen, dass für alle $x \in X$ und alle $\delta > 0$ ein $y \in B_\delta(x)$ existiert, sodass ein $n \in \N$ existiert, sodass
+  \begin{align*}
+    d(\phi^n(y), \phi^n(x)) \geq \frac \eta 4. 
+  \end{align*}
+Da $\per(\phi)$ dicht liegt, gibt es ein $p \in \per(\phi) \cap B_{\frac \eta 4}(x)$. Wegen dem ersten Schritt gibt es ein $q \in \per(\phi)$ mit $\dist (x, \cO_\phi(q)) > \eta$. Sei $k$ die Periode von $p$. Dann ist die Menge 
+\begin{align*}
+  U(q) \coloneqq \bigcap_{i = 0}^k \phi^{-i}(B_{\frac \eta 4}(\phi^i(q)))
+\end{align*}
+eine offene Umgebung von $q$, da $\phi$ stetig ist. Da $\phi$ transitiv ist, gibt es ein $z \in B_\delta(x)$ mit 
+\begin{align*}
+  \phi^j(z)\in U(\phi)
+\end{align*}
+für ein $j \in \N$.
+
+Definiere nun mittels der Gauß-Klammer 
+\begin{align*}
+  l \coloneqq \floor{ \frac j k + 1}, 
+\end{align*}
+das heißt $\frac j k < l \leq \frac j k +1$. Es folgt $j < lk \leq j +k $ oder äquivalent $0< lk -j\leq k$. Nach Konstruktion von $U(q)$ gilt
+\begin{align*}
+  \phi^{lk}(z) = \phi^{lk-j}(\phi^j(z)) \in \phi^{lk- j}(U(q))  \subseteq B_{\frac \eta 4}(\phi^{lk-j}(q)). 
+\end{align*}
+Mit der Beziehung $\phi^{lk}(p) = p$ ($p$ ist $k$-periodisch) und der Dreiecksungleichung folgt
+\begin{align*}
+  d(x, \phi^{lk- j}(q)) \leq d(x, p) + d(\phi^{lk}(p), \phi^{lk}(z)) + d(\phi^{lk}(z), \phi^{lk}(q)). 
+\end{align*}
+Hieraus ergibt sich, wieder mit der Dreiecksungleichung 
+\begin{align*}
+d(\phi^{lk}(p), \phi^{lk}(x)) + d(\phi^{lk}(x), \phi^{lk}(z)) &\geq d(\phi^{lk}(p), \phi^{lk}(z)) \\
+&\geq d(x, \phi^{lk-j}(q)) - d(x, p)- d(\phi^{lk}(x), \phi^{lk-j}(q))\\
+&> \eta - \frac \eta 4 - \frac \eta 4 > \frac \eta 2.      
+\end{align*}
+Daraus folgt
+\begin{align*}
+  d(\phi^{lk}(p), \phi^{lk}(x)) > \frac \eta 4
+\end{align*}
+oder 
+\begin{align*}
+  d(\phi^{lk}(x), \phi^{lk}(z)) > \frac \eta 4.
+\end{align*}
+Wähle $n\coloneqq lk$, sowie $y \coloneqq p$ im ersten Fall und $y\coloneqq z$ im zweiten  Fall. 
+\end{enumerate}
+\end{beweis}
+Eine etwas stärkere Eigenschaft als Sensitivität ist die positive Expansivität.
+\begin{definition}
+  Ein dynamisches System $(X, \phi)$ heißt \markdef{positiv expansiv}, wenn es ein $\eps > 0$ gibt für alle $x, y \in X$ mit $x \neq y$ und es dafür ein $n \in \N_0$ gibt mit 
+  \begin{align*}
+    d(\phi^n(y),\phi^n(x)) \geq \eps.
+  \end{align*}
+$\eps$ heißt Expansivitätskonstante von $\phi$.
+\end{definition}
+\begin{satz}
+  Sei $(X, \phi)$ ein positiv expansives dynamsiches Systema auf einem perfekten Raum $X$, has heißt, $X$ enthält keine isolierten Punkte. Dann ist $(X, \phi)$ sensitiv.
+\end{satz}
+\begin{beweis}
+  Sei $\eps >0$ die Expansitivitätskonstante von $(X, \phi)$. Da $X$ perfekt ist, gibt es für jedes $x \in X$ und jedes $\delta > 0$ ein $y \in B_\delta(x)\setminus \set x$ und $n \in \N$ mit $d(\phi^n(x), \phi^n(y)) > \eps$.
 \end{beweis}
