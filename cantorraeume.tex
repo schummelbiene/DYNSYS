@@ -100,3 +100,147 @@ Sei $(A_k)_{k \in M}$ mit $M = \N$ oder $M = \Z$ eine Folge von endlichen Mengen
 &\Leftrightarrow d((a_n), (b_n)) \leq \frac 1 {2^{n+1}}
   \end{align*}
 \end{bemerkung}
+%\datum{18. November 2014}
+
+\begin{bemerkung}
+  Den gleichen topologischen Raum wie in Aufgabe 2.8 erhält man, indem man das Produkt der diskreten topologischen Räume $(A_k, \cP(A_k))$ mit der Produkttopologie betrachtet.  
+\end{bemerkung}
+\begin{satz} EIndeutigkeit des Cantorraumes
+ 
+  Jeder Cantorraum ist homöomorph zu $\set {0, 1}^\N$.
+\end{satz}
+Wir beweisen zunächst ein Lemma:
+\begin{lemma} Abgeschlossene offene Mengen in Cantorräumen
+
+Sei $X$ ein Cantorraum und sei $\cB$ die Menge der zugleich offenen und abgeschlossenen Teilmengen von $X$. 
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\begin{enumerate}
+\item Für jedes $x \in X$ und $\eps >0$ git es $B \in \cB$ mit $x \in B$ und $\diam(B)< \eps$.
+\item Sei $\emptyset \neq Y \subseteq X$ abgeschlossen und offen. Dann ist $Y$ wieder ein Cantorraum und es gibt zwei nichtleere abgeschlossene offene Teilmengen, deren Vereinigung $Y$ ist.
+\item Für jedes $\eps > 0$ gibt es ein $N \in \N$, sodass für alle $n > N$ möglich ist, dass $X$ als Vereinigung von $n$ nichtleeren abgeschlossenen offenen Mengen mit Durchmesser kleiner $\eps$ darzustellen. 
+\end{enumerate}
+\end{lemma}
+\begin{beweis}
+  \enu{\alph}
+  \begin{enumerate}
+  \item Die Kugel $B_{\frac \eps 2}(x)$ lässt sich als Vereinigung von offenen abgeschlossenen Mengen darstellen, also gibt es $B \in \cB$ mit $x \in B$ und $B \subseteq B_{\frac \eps 2}(x)$ und damit $\diam(B)< \eps$.
+  \item Kompaktheit, Perfektheit und Null-Dimensionalität von $Y$ lassen sich leicht prüfen. Da $Y$ als perfekter metrischer Raum mindestens zwei Punkte enthält, gibt es $x, y \in Y$, $x \neq y$ und nach (a) gibt es $B \in \cB$ mit $\diam(B)< d(x, y)$ und $x \in B$, also ist $B \cap Y  \subsetneq Y$ abgeschlossen und offen und bildet mit $Y \setminus B$ eine Zerlegung von $Y$ in zwei offene abgeschlossene Mengen.
+\item Nach (a) können wir $X$ mit Mengen aus $\cB$ mit Durchmesser kleiner $\eps$ überdecken, und da $X$ kompakt ist, gibt es eine endliche Teilüberdeckung. Inden man paarweise Durchschnitte bildet, erhält man eine Zerlegung von $X$ in $N \in \N$ offene abgeschlossene Mengen mit Durchmesser $\eps$. Indem man eine der Mengen mit (b) weiter zerlegt, erhält man schrittweise auch Zerlegungen in $n > N$ Mengen.
+\end{enumerate}
+\end{beweis}
+\begin{beweis} von Satz 2.11: Wir zerlegen mithilfe von Lemma 2.12 (c) den Cantorraum $X$ in $2^{n_1}$ nichtleere abgeschlossene offene Teilmengen $V_1, \dots V_{2^{n_1}}$ mit Durchmesser gleich $\frac 1 {2^1}$. Diese zerlegen wir wiederum jeweils in $2^{n_2}$ nichtleere abgeschlossene offene Teilmengen 
+  \begin{align*}
+    &V_{1, 1}, \dots, V_{1, 2^{n_2}} \subseteq V_1\\
+    &V_{2, 1}, \dots, V_{2, 2^{n_2}} \subseteq V_2\\
+    &\qquad\dots\\
+    &V_{2^{n_1}, 1}, \dots, V_{2^{n_1}, 2^{n_2}} \subseteq V_2^{n_1}
+  \end{align*}
+mit Durchmesser kleiner gleich $\frac 1 {2^2}$. Rekursiv fahren wir nun fort und erhalten Familien von nichtleeren abgeschlossenen Teilmengen 
+\begin{align*}
+  &(V_i)_{i \in \set{1, \dots , 2^{n_1}}}\\
+  &(V_{i,j})_{i \in \set{1, \dots , 2^{n_1}}, j \in \set{1, \dots, 2^{n_2}}}\\
+  &(V_{i,j, k})_{i \in \set{1, \dots , 2^{n_1}}, j \in \set{1, \dots, 2^{n_2}}, k \in \set{1, \dots, 2^{n_3}}}, \dots
+\end{align*}
+für die jeweils gilt
+\begin{align*}
+  &V_{a_1, \dots, a_l, a_{l+1}} \subseteq V_{a_1, \dots, a_l}\\
+  &\diam(V_{a_1, \dots, a_l}) < \frac 1 {2^l}
+\end{align*}
+für $l \in \N$. Sei 
+\begin{align*}
+  (y_1, y_2, \dots) \in Y \coloneqq \Pi_{l \in \N} \set{1, \dots, 2^{n_l}}.
+\end{align*} 
+Dann ist 
+\begin{align*}
+  V_{y_1} \cap   V_{y_1, y_2} \cap   V_{y_1, y_2, y_3}  \cap \dots
+\end{align*}
+nichtleer als Schachtelung abgeschlossener Mengen in einem kompakten Raum und enthält genau einen Punkt, da der Durchmesser der Mengen gegen $0$ geht. Also können wir eine Abbildung $f: Y \to X$ definieren, wobei $f\left((y_i)_{i \in \N}\right)$ das eindeutig bestimmte Element in 
+\begin{align*}
+  \bigcap_{l \in \N} V_{y_1, \dots, ,y_l} 
+\end{align*}
+ist. Für $y, z \in Y$ mit $y \neq z$ gibt es ein $l \in \N$ mit $y_l \neq z_l$. Dann ist aber 
+\begin{align*}
+  V_{y_1, \dots y_l} \cap V_{z_1, \dots z_l} \neq \emptyset,
+\end{align*}
+also auch 
+\begin{align*}
+  f(y) \neq f(z).
+\end{align*}
+Damit ist $f$ injektiv. $f$ ist surjektiv, da für $x \in X$ und $l \in \N$ genau ein Tupel $(y_1, \dots, y_l)$ existiert mit $x \in V_{y_1, \dots, y_l}$. Damit gilt $x \in \bigcap_{l \in \N} V_{y_1, \dots y_l}$. 
+Seien $y, z \in Y$ mit $d(y, z) \leq \frac 1 {2^n}$. Dann gilt 
+\begin{align*}
+ y_1 = z_1,\; \dots,\; y_n = z_n, 
+\end{align*}
+also ist $f(y) \in V_{y_1, \dots, y_n}$ und $f(z) \in V_{y_1, \dots y_n}$. Da $\diam(V_{y_1, \dots, y_n})< \frac 1 {2^n}$, gilt auch 
+\begin{align*}
+  d(f(y), f(z))< \frac 1 {2^n}.
+\end{align*}g
+Damit ist $f$ stetig und da $X$ und $Y$ kompakt sind, ist $f$ ein Homöomorphismus. Schließlich ist $\set{0,1}^n$ homöomorph zu $\set{1, \dots, 2^n}$ für $n \in \N$, also ist $Y$ homöomorph zu $\set{0,1}^\N$.
+\end{beweis}
+Damit ist insbesondere die Mitteldrittel-Cantormenge homöomorph zu $\set{0,1}^\N$. Hier kann man den Homöomorphismus sogar direkt angeben, nämlich 
+\begin{align*}
+  f:& \set {0,1}^\N \to C,\\
+  &a_n \mapsto \sum_{n = 1}^\infty \frac {2a_n}{3^{n-1}}.
+\end{align*}
+
+%\datum{25. November 2014}
+
+\begin{satz}
+  Jeder kompakte metrische Raum $X$ ist Bild einer stetigen Abbildung von einem Cantorraum nach $X$.
+\end{satz}
+\begin{satz} Jedes (kompakte!) dynamische System $(X, \phi)$ ist Faktor eines dynamischen Systems auf einem Cantorraum.
+\end{satz}
+\begin{definition} Eine stetige Abbildung $f: X \to Y$ hat die \markdef{Erweiterungseigenschaft}, wenn es für jedes stetige $g:X \to Y$ ein $\phi: X \to X$ gibt, sodass $g = f \circ \phi$.
+  \begin{align*}
+    \left(  \forall g \in C(X, Y) \; \exists \phi: X \to X: g = f \circ \phi\right)
+  \end{align*}
+\end{definition}
+\begin{definition} Sei $X$ ein metrischer Raum und $\cV$ eine offene Überdeckung von $X$. Dann heißt $\lambda >0$ \markdef{Lebesguezahl} von $\cV$, wenn es für jedes $x \in X$ ein $V \in \cV$ gibt mit $B_\l(x) \subseteq V$.
+\end{definition}
+\begin{uebung} Zeigen Sie, dass für jede offene Überdeckung eines kompakten metrischen Raumes eine Lebesguezahl existiert.
+\end{uebung}
+\begin{satz}(Weihrauch)
+
+  Für jeden kompakten metrischen Raum $Y$ gibt es eine stetige surjektive Abbildung $f: \set{0,1}^\N \to Y$ mit der Erweiterungseigenschaft.
+\end{satz}
+\begin{beweis}
+  Analog zum Beweis von Satz 2.11 konstruieren wir eine Familie von offenen Überdeckungen
+  \begin{align*}
+    (V_i)_{i \in \set{1, \dots, n_1}}, (V_{i, j})_{i \in \set{1, \dots, n_1}, j \in \set{1, \dots, n_2}}, \dots
+  \end{align*}
+  so, dass für alle $k \in \N$ und $(a_1, \dots, a_k) \in \set{1, \dots, n_1}\times \dots \times \set{1, \dots, n_k}$ gilt
+  \begin{align*}
+    V_{a_1, \dots, a_k} = \bigcup_{i \in \set{1, \dots, n_{k+1}}} V_{a_1, \dots, a_k,i}
+  \end{align*}
+  und $\diam(V_{a_1, \dots, a_k})<2^{-k}$. Wir definieren eine Folge von Mengen
+  \begin{align*}
+    A_k \coloneqq \prod_{l = 1}^k \set{1, \dots, n_l}
+  \end{align*}
+  und den symbolischen Raum
+  \begin{align*}
+    X \coloneqq \prod_{l = 1}^\infty\set{1, \dots, n_l}
+  \end{align*}
+  ausgestattet mit der Metrik aus Aufgabe 2.8.
+  Dann ist $X$ homöomorph zu $\set{0, 1}^\N$ nach Satz 2.11.
+
+  Für $a \in A_k$ bezeichnen wir mit
+  \begin{align*}
+    [a] \coloneqq \set{x \in X |\; \forall l \in \set{1, \dots, k}: x_i = a_i}
+  \end{align*}
+  die zugehörige Zylindermenge in $X$.
+
+  Für $x \in X$ ist $V_x \coloneqq \bigcap_{k = 1}^\infty \overline{V_{x_1, \dots, x_k}}$ nichtleer und hat Durchmesser $0$, also gibt es genau ein $f(x) \in \bigcap_{k = 1}^\infty  \overline{V_{x_1, \dots, x_k}}$. Für alle $k \in \N$ bilden $(V_{a_1, \dots, a_k})_{a \in A_k}$ eine Überdeckung von $Y$, also gibt es für jedes $y \in Y$ ein $x \in X$ mit $f(x) = y$, damit ist $f$ surjektiv und wegen $d(u, v) < 2^{-k}$ folgt $f(u) \in \overline{V_{x_1, \dots, x_l}}$, woraus $d(f(u), f(v)) \leq 2^{-k}$ folgt, und $f$ ist stetig .
+  Wir zeigen nun, dass $f$ die Erweiterungseigenschaft hat. Sei $\l_k$ eine Lebesguezahl von $(V_a)_{a \in A_k}$. Sei $g: X \to Y$ eine stetige Abbildung. Da $X$ kompakt und somit $g$ gleichmäßig stetig ist, gibt es eine monoton wachsende Folge $(m_k)_{k \in \N}$ so, dass $d(u, v) \leq 2^{-m_k} \; \Rightarrow \; d(g(u), g(v))< \l_k$ für $u, v \in \set{0, 1}^\N$ und $k \in \N$.
+
+  Wenn $a \in A_{m_1}$ und $x \in [a]$, dann ist $g([a]) \subseteq B_{\l_1}(g(x))$. Also gibt es ein $\phi_1(a) \in A_1$ mit $g([a]) \subseteq V_{\phi_1(a)}$. Wir fahren rekursiv fort. Angenommen, wir haben $\phi_k: A_{m_k} \to A_k$ konstruiert, sodass $g([a]) \subseteq V_{\phi_k(a)}$. Sei
+  \begin{align*}
+    \psi_k:& A_{m_{k+1}} - A_{m_{k}},\\
+    &(x_1, \dots, x_{m_k}, \dots, x_{m_{k+1}}) \mapsto (x_1, \dots, x_{m_k}).
+  \end{align*}
+  Für $a \in A_{m_{k+1}}$ gilt $[a] \subseteq [\psi_k(a)]$, also auch $g([a]) \subseteq g([\psi_k(a)]) \subseteq T_{\phi_k}(\psi_k(a))$. Dann gibt es $\phi_{k+1}(a) \in A_{k+1}$, sodass für jedes $x \in [a]$ gilt: $g([a]) \subseteq B_{\l_{k+1}}(g(x)) \subseteq V_{\phi_{k+1}(a)} \subseteq V_{\phi_k(\psi_k(a))}$. Damit gilt $(\phi_{k+1}(a))_l = (\phi_{k}(\psi_k(a)))_l $ für alle $l \in \set{1, \dots, m_k}$. Wir definieren nun $\phi:X \to X$ mit $\phi(x)_k = (\phi_k(x_1, \dots, x_{m_k}))_k$. Es gilt dann $\phi(x)_{1, \dots, k} = \phi_k(x_1, \dots, x_{m_k})$. Damit ist die Abbildung $\phi:X \to X$ stetig, denn $d(x, y)< 2^{-m_k} \; \Rightarrow \; d(\phi(x), \phi(y))<2^{-k}$. Schließlich ist $g([x_1, \dots, x_{m_k}]) \subseteq V_{\phi_k(x_1, \dots, x_{m_k})} = V_{\phi(x)_1, \dots, \phi(x)_k}$ so, dass $g(x) \in V_{\phi(x)}$ und damit $f(\phi(x)) = g(x)$.
+\end{beweis}
+
+\begin{beweis} von Satz 2.14:
+
+  Sei $(Y, \psi)$ ein dynamisches System. Dann gibt es nach Satz 2.18 eine stetige, surjektive Abbildung $f: \set{0, 1}^\N \to Y$ mit der Erweiterungseigenschaft. Damit gibt es also ein stetiges $\phi: \set{0, 1}^\N \to \set{0, 1}^\N$ mit $\psi \circ f = f \circ \phi$.
+\end{beweis}

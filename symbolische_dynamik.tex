@@ -1,0 +1,42 @@
+\section{Symbolische Dynamik}
+\begin{definition} (Shift)
+
+  Sei $S$ eine Menge mit mehr als einem Element. Als \markdef{vollen Shift} $(S^\Z, \sigma)$ mit dem Alphabet $S$ bezeichnen wir den Cantorraum $(S^\Z, d)$ zusammen mit der Shiftabbildung $\sigma$ (dem Linksshift), definiert durch
+  \begin{align*}
+    \sigma(a)_i = a_{i+1}.
+  \end{align*}
+  Ein Subshift (bzw. Shift oder Shift-Dynamisches-System) $(X, \sigma_X)$ ist eine nichtleere, abgeschlossene Teilmenge $X$ eines vollen Shiftes, die invariant unter $\sigma$ ist, zusammen mit der Einschränkung $\sigma_X$ von $\sigma$ auf $X$.
+\end{definition}
+\begin{bemerkung}
+  Die Gruppe $\Z$ in Definition 3.1 bezeichnen wir als Gitter. Man betrachtet Shifts auch über anderen Gruppen oder Halbgruppen, insbesondere über $\N$ und $\Z^n$. Wir wollen uns hier aber auf eindimensionale zweiseitige Shifts beschränken, also Shifts mit dem Gitter $\Z$. 
+\end{bemerkung}
+\begin{beispiel}
+  Wir betrachten jeweils eine Menge $X \subseteq \set{0,1}^\Z$ von zweiseitigen Folgen über dem Alphabet $\set {0,1}$. 
+\enu{\alph}
+  \begin{enumerate}
+  \item Goldener-Schnitt Shift:
+Wir betrachten alle Folgen, in denen keine zwei Einsen aufeinander folgen. 
+\item Gerader Shift:
+Wir betrachten alle Folgen, in denen zwischen zwei Einsen eine gerade Anzahl von Nullen steht.
+\item Lauflängenbeschränkter Shift: Sei $d, k \in \N$, $d \leq k$. Wir betrachten alle Folgen, in denen in jeder Richtung unendlich viele Einsen vorkommen und zwischen zwei aufeinanderfolgenden Einsen immer mindestens $d$ und höchstens $k$ Nullen stehen. 
+  \end{enumerate}
+\end{beispiel}
+\begin{definition} (Wörter)
+
+Die Menge aller \markdef{Wörter} mit Buchstaben in $S$ ist definiert als
+\begin{align*}
+  S^* \coloneqq \bigcup_{n \in \N_0} S^n.
+\end{align*}
+  Dabei ist $S^0$ die einelementige Menge, die nur das leere Wort $\eps$ enthält. Für $w \in S^*$ bezeichne $\norm w$ die Länge von $w$. Sei $X \subseteq S^\Z$. Wir bezeichnen die Menge aller Wörter der Länge $n$, die in den Konfigurationen von $X$ auftauchen können mit
+  \begin{align*}
+ W_n(X) \coloneqq \set{w \in S^n| \; \exists x \in X \;\exists k \in \Z: X_{k, \dots, k+n-1} = w}   
+  \end{align*}
+Alle Wörter, die in $X$ auftauchen, werden dann mit 
+\begin{align*}
+  W(X) \coloneqq \bigcup_{n \in \N} W_n(X) \cup \set \eps
+\end{align*}
+ bezeichnet. Für eine Menge $F$ von Wörtern sei $\Sigma_F \subseteq S^\Z$ die Menge aller Konfigurationen, in denen kein Wort aus $F$ vorkommt, das heißt 
+ \begin{align*}
+   \Sigma_F \coloneqq \set{x \in S^\Z |\; W(\set x) \cap F = \emptyset}
+ \end{align*}
+\end{definition}
