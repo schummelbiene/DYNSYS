@@ -1,0 +1,49 @@
+\section{Kapitel}
+
+\begin{bemerkung}
+  Da die meisten Eigenschaften der Adjazenzmatrix, für die wir uns interessieren, invariant unter Umsortierung der Spalten und Zeilen (also Umnummerierung der Knoten) sind, werden im Folgenden auch von der Adjazenzmatrix eines Graphen mit beliebiger endlicher Knotenmenge sprechen, ohne auf die Nummerierung explizit einzugehen. 
+\end{bemerkung}
+\begin{definition} Irreduzibel und zusammenhängend
+
+  \begin{enumerate}
+\enu{\alph}
+  \item Eine Matrix $A \in \R_{\geq 0}^{n \times n}$ heißt \markdef{irreduzibel} genau dann, wenn es für beliebige $i, j \in \set{1, \dots, n}$, ein $k \in \N$ so, dass $(A^k)_{ij} > 0$. 
+\item Ein Graph heißt \markdef{stark zusammenhängend}, wenn es zu jedem Paar von Knoten $(i, j)$ einen Weg gibt, der in $i$ beginnt und in $j$ endet.
+  \end{enumerate}
+\end{definition}
+\begin{uebung}
+  Zeigen Sie: Ein Graph ist genau dann stark zusammenhängend, wenn seien Adjazenzmatrix irreduzibel ist. Insbesondere hat eine irreduzible Matrix keine Zeile oder Spalte, die ausschließlich aus Nullen besteht. 
+\end{uebung}
+\begin{uebung}
+  Sei $G = (V, E, h, t)$ ein stark zusammenhängender Graph mit mindestens einem Knoten $v$ mit mehr als einer eingehenden Kante (das heißt $\norm{\set{e \in E| \; h(e) = v}}\geq 2$). 
+\enu{\alph}
+  \begin{enumerate}
+  \item Zeigen Sie, dass $(\Sigma_G, \sigma)$ positiv expansiv und transitiv ist. 
+  \item Geben sie ein Beispiel für einen solchen Graphen an, so dass $(\Sigma,_G, \sigma)$ nicht topologisch mischend ist.  
+  \end{enumerate}
+\end{uebung}
+\begin{definition}
+  Sei $A \in \R_{\geq 0}^{n \times n}$ und $i \in \set{1, \dots, n}$. Die Periode des Index $i$ wird definiert als 
+  \begin{align*}
+    p(i) \coloneqq \operatorname{ggT}\set{m \in \N| \, (A^m)_{ij} > 0}.
+  \end{align*}
+Erinnerung: Für $M \subseteq \Z$ ist
+\begin{align*}
+  \operatorname{ggT} M = d : \leftrightarrow \; \forall p \in \Z: \, (\forall m \in M: \, p |m \Leftrightarrow p |d),
+\end{align*}
+das heißt die Teiler von $\operatorname{ggT} M$ sind genau die $p$ aus $\Z$, die alle Elemente $m$ aus $M$ teilen. 
+\end{definition}
+\begin{lemma}
+  Wenn $A$ irreduzibel ist, dann ist die Periode für alle Indizes gleich und wird \markdef{Periode} von $A$ genannt. 
+\end{lemma}
+\begin{beweis}
+  Wir definieren $P(i) \coloneqq \set{m \in \N} |\, (A^m)_{ij} > 0$. Wir betrachten zwei Indizes $i, j$ mit $i \neq j$. Da $A$ irredizibel ist, gibt es $k, l \in \N$ mit $(A^l)_{ij}>0$ und $(A^k)_{ji}>0$. Damit ist 
+  \begin{align*}
+    A^{k+l}_{ij} = \sum_{j = 1}^n (A^k)_{js} (A^l)_{sj} > 0.
+  \end{align*}
+Somit ist $k + l \in P(j)$. Sei $m \in P(i)$. Dann ist 
+\begin{align*}
+  (A^{k+ m+ l})_{jj} = \sum_{s, t = 1}^n (A^k)_{js}(A^m)_{st}(A^l)_{tj}>0, 
+\end{align*}
+also $k + m+ l \in P(j)$. Damit fürgt nach Definition von $p(j)$, dass $p(j) | k + l+ m$ und $p(j) | k+ l$, also auch $p(j) | m$. Insgesamt gilt damit $p(j)|p(i)$  (da $\forall p \in \Z: \, (\forall m \in P(i): \, p | m \Leftrightarrow p |p(i))$). Umgekehrt gilt auch $p(i)|p(j)$, also $p(i) = p(j)$.
+\end{beweis}
